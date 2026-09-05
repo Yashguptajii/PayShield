@@ -1,0 +1,28 @@
+services:
+  kong:
+    image: kong:3.9
+    container_name: payshield-kong
+    restart: unless-stopped
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    environment:
+      KONG_DATABASE: "postgres"
+      KONG_PG_HOST: "host.docker.internal"
+      KONG_PG_PORT: "5432"
+      KONG_PG_DATABASE: "kong_db"
+      KONG_PG_USER: "kong"
+      KONG_PG_PASSWORD: "${KONG_PG_PASSWORD}"
+
+      KONG_PROXY_ACCESS_LOG: "/dev/stdout"
+      KONG_PROXY_ERROR_LOG: "/dev/stderr"
+      KONG_ADMIN_ACCESS_LOG: "/dev/stdout"
+      KONG_ADMIN_ERROR_LOG: "/dev/stderr"
+
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001"
+
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"

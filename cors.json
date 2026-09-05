@@ -1,0 +1,29 @@
+{
+  "name": "cors",
+  "config": {
+    "origins": [
+      "http://localhost:5173"
+    ],
+    "methods": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS"
+    ],
+    "headers": [
+      "Accept",
+      "Content-Type",
+      "Authorization",
+      "Idempotency-Key"
+    ],
+    "exposed_headers": [
+      "Content-Length",
+      "Content-Type"
+    ],
+    "credentials": false,
+    "max_age": 3600,
+    "preflight_continue": false
+  }
+}
